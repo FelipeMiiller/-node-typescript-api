@@ -1,0 +1,174 @@
+{
+	"hours": [
+		{
+			"swellDirection": {
+				"icon": 152.01,
+				"noaa": 157.4,
+				"sg": 152.01
+			},
+			"swellHeight": {
+				"icon": 1.38,
+				"noaa": 1.53,
+				"sg": 1.38
+			},
+			"swellPeriod": {
+				"icon": 7.61,
+				"noaa": 9.64,
+				"sg": 7.61
+			},
+			"time": "2023-04-14T00:00:00+00:00",
+			"waveDirection": {
+				"icon": 152.1,
+				"noaa": 148.9,
+				"sg": 152.1
+			},
+			"waveHeight": {
+				"icon": 1.38,
+				"noaa": 2.03,
+				"sg": 1.38
+			},
+			"windDirection": {
+				"icon": 186.13,
+				"noaa": 184.16,
+				"sg": 186.13
+			},
+			"windSpeed": {
+				"icon": 3.8,
+				"noaa": 9.18,
+				"sg": 3.8
+			}
+		},
+		{
+			"swellDirection": {
+				"icon": 152.1,
+				"noaa": 155.32,
+				"sg": 152.1
+			},
+			"swellHeight": {
+				"icon": 1.37,
+				"noaa": 1.68,
+				"sg": 1.37
+			},
+			"swellPeriod": {
+				"icon": 7.64,
+				"noaa": 9.42,
+				"sg": 7.64
+			},
+			"time": "2023-04-14T01:00:00+00:00",
+			"waveDirection": {
+				"icon": 152.2,
+				"noaa": 148.58,
+				"sg": 152.2
+			},
+			"waveHeight": {
+				"icon": 1.37,
+				"noaa": 2.02,
+				"sg": 1.37
+			},
+			"windDirection": {
+				"icon": 182.88,
+				"noaa": 190.17,
+				"sg": 182.88
+			},
+			"windSpeed": {
+				"icon": 3.86,
+				"noaa": 8.98,
+				"sg": 3.86
+			}
+		},
+		{
+			"swellDirection": {
+				"icon": 152.19,
+				"noaa": 153.25,
+				"sg": 152.19
+			},
+			"swellHeight": {
+				"icon": 1.37,
+				"noaa": 1.84,
+				"sg": 1.37
+			},
+			"swellPeriod": {
+				"icon": 7.68,
+				"noaa": 9.21,
+				"sg": 7.68
+			},
+			"time": "2023-04-14T02:00:00+00:00",
+			"waveDirection": {
+				"icon": 152.31,
+				"noaa": 148.27,
+				"sg": 152.31
+			},
+			"waveHeight": {
+				"icon": 1.37,
+				"noaa": 2.0,
+				"sg": 1.37
+			},
+			"windDirection": {
+				"icon": 179.64,
+				"noaa": 196.19,
+				"sg": 179.64
+			},
+			"windSpeed": {
+				"icon": 3.93,
+				"noaa": 8.77,
+				"sg": 3.93
+			}
+		},
+		{
+			"swellDirection": {
+				"icon": 152.28,
+				"noaa": 151.17,
+				"sg": 152.28
+			},
+			"swellHeight": {
+				"icon": 1.36,
+				"noaa": 1.99,
+				"sg": 1.36
+			},
+			"swellPeriod": {
+				"icon": 7.71,
+				"noaa": 8.99,
+				"sg": 7.71
+			},
+			"time": "2023-04-14T03:00:00+00:00",
+			"waveDirection": {
+				"icon": 152.41,
+				"noaa": 147.95,
+				"sg": 152.41
+			},
+			"waveHeight": {
+				"icon": 1.36,
+				"noaa": 1.99,
+				"sg": 1.36
+			},
+			"windDirection": {
+				"icon": 176.39,
+				"noaa": 202.2,
+				"sg": 176.39
+			},
+			"windSpeed": {
+				"icon": 3.99,
+				"noaa": 8.57,
+				"sg": 3.99
+			}
+		}
+	],
+	"meta": {
+		"cost": 1,
+		"dailyQuota": 10,
+		"end": "2023-04-24 00:00",
+		"lat": -33.792726,
+		"lng": 151.289824,
+		"params": [
+			"swellDirection",
+			"swellHeight",
+			"swellPeriod",
+			"waveDirection",
+			"waveHeight",
+			"windDirection",
+			"windSpeed"
+		],
+		"requestCount": 1,
+		"start": "2023-04-14 00:00"
+	}
+}

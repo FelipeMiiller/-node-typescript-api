@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 
 export default class ForecastController {
   async getForecastForgeLoggedUser(request: Request, response: Response): Promise<Response> {
-    return response.status(200).send([
+    return response.status(200).json([
       {
         time: '2020-04-26T00:00:00+00:00',
         forecast: [
