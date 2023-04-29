@@ -32,7 +32,7 @@
   "include": [
     "./src/**/*.ts",
     "./test/**/*.ts"
-  ],
+, "src/index.ts"  ],
   "exclude": [
     "./node_modules/*",
     "dist"
