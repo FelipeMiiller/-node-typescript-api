@@ -40,23 +40,26 @@ export interface ForecastPoint {
 
 export class StormGlassUnexpectedResponseError extends InternalError {
   constructor(message: string) {
+   
     super(message);
   }
 }
 
 
 export class ClientRequestError extends InternalError {
-  constructor(message: string) {
-    console.log(message)
+  constructor(message: string) 
+  {
+   
     const internalMessage =
       'Unexpected error when trying to communicate to StormGlass';
     super(`${internalMessage}: ${message}`);
   }
 }
 
+
 export class StormGlassResponseError extends InternalError {
   constructor(message: string) {
-    console.log(message)
+ 
     const internalMessage =
       'Unexpected error returned by the StormGlass service';
     super(`${internalMessage}: ${message}`);
@@ -87,25 +90,19 @@ export default class StormGlass {
 
       return this.normalizeResponse(data)
 
-
     } catch (err) {
       if (err instanceof Error && HTTPUtil.Request.isRequestError(err)) {
-        console.log("dfsdf")
+      
         const error = HTTPUtil.Request.extractErrorData(err);
-        console.log(error)
-        console.log(`Error: ${JSON.stringify(error.data)} Code: ${error.status}`)
+       
         throw new StormGlassResponseError(
           `Error: ${JSON.stringify(error.data)} Code: ${error.status}`
         );
 
-      }
-      if (err instanceof Error) {
-
-        throw new ClientRequestError(JSON.stringify(err.message));
-      }
-
+       
     }
-
+    throw new ClientRequestError(JSON.stringify(err));
+  }
   }
 
   private normalizeResponse(points: StormGlassForecastResponse): ForecastPoint[] {
