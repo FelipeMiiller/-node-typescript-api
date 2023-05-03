@@ -1,22 +1,12 @@
-import dotenv from 'dotenv';
-import cors from 'cors';
-import express from 'express';
+import { SetupServer } from "./configServer";
 
-import { routes } from './routes';
 
-export const app = express();
+
 
 async function bootstrap() {
-  dotenv.config();
+  const server: SetupServer = new SetupServer();
+  await server.init();
 
-  app.use(cors());
-  app.use(express.json());
-  app.use(routes);
-
-  // await Setups();
-
-  app.listen(process.env.PORT || 3333, () => {
-    console.log('HTTP server on running!');
-  });
 }
+
 bootstrap();

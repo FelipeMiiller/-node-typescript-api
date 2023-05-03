@@ -1,7 +1,7 @@
 {
-  "name": "Nodejs-API",
-  "version": "1.0.0",
-  "description": "Template API em Typescript  Express",
+  "name": "NodejsAPI",
+  "version": "2.0.0",
+  "description": "API em Typescript Express",
   "main": "index.js",
   "scripts": {
     "build": "tsc",
@@ -43,6 +43,7 @@
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
-    "module-alias": "^2.2.2"
+    "module-alias": "^2.2.2",
+    "mongoose": "^7.1.0"
   }
 }
