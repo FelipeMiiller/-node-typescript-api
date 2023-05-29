@@ -1,19 +1,10 @@
 
-import { SetupServer } from '@src/configServer';
-import supertest from 'supertest';
-
-
-
-
-const server = new SetupServer();
-
-
 
 
 describe('Beach forecast functional tests', () => {
 
   it('should return a forecast with just a few times', async () => {
-    const { body, status } = await supertest(server.getApp).get('/forecast');
+    const { body, status } = await global.testRequest.get('/forecast');
     expect(status).toBe(200);
     expect(body).toEqual([
       {

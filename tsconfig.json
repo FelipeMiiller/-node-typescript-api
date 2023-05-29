@@ -3,7 +3,9 @@
     "target": "es2019",
     "moduleResolution": "node",
     "module": "commonjs",
-    "lib": ["es2019"],
+    "lib": [
+      "es2019"
+    ],
     "sourceMap": true,
     "outDir": "dist",
     "strict": true,
@@ -19,8 +21,12 @@
     "allowSyntheticDefaultImports": true,
     "baseUrl": ".",
     "paths": {
-      "@src/*": ["./src/*"],
-      "@test/*": ["./test/*"]
+      "@src/*": [
+        "./src/*"
+      ],
+      "@test/*": [
+        "./test/*"
+      ]
     },
     "rootDirs": [
       "./src",
@@ -32,9 +38,9 @@
   "include": [
     "./src/**/*.ts",
     "./test/**/*.ts"
-, "src/index.ts", "test/jest.config.js"  ],
+  ],
   "exclude": [
     "./node_modules/*",
-    "dist"
+    "dist",
   ]
 }
