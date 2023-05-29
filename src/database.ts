@@ -3,9 +3,10 @@ import mongoose from 'mongoose';
 
 
 export async function connect(): Promise<void> {
+  
     try {
         await mongoose.connect(process.env.MONGO_URL, {
-            useNewUrlParser: true,
+          
             useUnifiedTopology: true,
         });
         console.error(`Database connected`);

@@ -12,6 +12,7 @@ export class SetupServer {
   }
 
   public async init(): Promise<void> {
+    console.log('init');
     this.setupExpress();
     this.setupControllers();
     await this.databaseSetup();
@@ -23,6 +24,7 @@ export class SetupServer {
   }
 
   private setupExpress(): void {
+    console.log('setupExpress');
     dotenv.config();
     this.app.use(cors());
     this.app.use(express.json());
@@ -30,6 +32,7 @@ export class SetupServer {
   }
 
   private setupControllers(): void {
+    console.log('setupControllers');
     this.app.use(routes);
     console.log('setupControllers');
   }
@@ -39,11 +42,13 @@ export class SetupServer {
   }
 
   private async databaseSetup(): Promise<void> {
+    console.log('databaseSetup');
     await database.connect();
 
   }
 
   public async close(): Promise<void> {
+    console.log('close');
     await database.close();
   }
 }

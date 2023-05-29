@@ -1,4 +1,5 @@
-import { SetupServer } from '@src/server';
+
+import { SetupServer } from '@src/configServer';
 import supertest from 'supertest';
 
 
