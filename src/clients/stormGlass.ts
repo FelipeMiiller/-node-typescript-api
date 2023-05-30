@@ -84,6 +84,7 @@ export default class StormGlass {
           Authorization: process.env.STORM_GLASS_API_KEY
         }
       });
+      
       return this.normalizeResponse(data)
 
     } catch (err) {

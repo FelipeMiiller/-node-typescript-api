@@ -1,7 +1,8 @@
 
 import StormGlass from '@src/clients/stormGlass';
 import stormGlassNormalizedMock from '@test/fixtures/StormGlass_water_Normalized_Mock.json';
-import Forecast, { Beach, BeachPosition, ForecastProcessingInternalError } from '@src/forecast/forescast.service';
+import Forecast, { ForecastProcessingInternalError } from '@src/forecast/forescast.service';
+import { Beach, BeachPosition } from '@src/models/beach';
 jest.mock('@src/clients/stormGlass');
 describe('StormGlass client', () => {
 
