@@ -1,7 +1,6 @@
 
-import { InternalError } from "@src/util/errors/internal-errors";
-import config, { IConfig } from "config";
-import * as HTTPUtil from "@src/util/Request";
+import { InternalError } from "../util/errors/internal-errors";
+import * as HTTPUtil from "../util/Request";
 
 
 
@@ -66,9 +65,7 @@ export class StormGlassResponseError extends InternalError {
   }
 }
 
-const stormglassResourceConfig: IConfig = config.get(
-  'App.resources.StormGlass'
-);
+
 
 
 export default class StormGlass {
@@ -81,13 +78,12 @@ export default class StormGlass {
 
     try {
       const { data } = await this.request.get<StormGlassForecastResponse>(
-        `${stormglassResourceConfig.get('apiUrl')}
-        weather/point?lat=${lat}&lng=${lng}&params=${this.stormGlassAPIParams}`, {
+        `${process.env.STORM_GLASS_API_URL}/weather/point?lat=${lat}&lng=${lng}&params=${this.stormGlassAPIParams}&source=${this.stormGlassAPISource}`
+        , {
         headers: {
           Authorization: process.env.STORM_GLASS_API_KEY
         }
       });
-
       return this.normalizeResponse(data)
 
     } catch (err) {
@@ -98,8 +94,6 @@ export default class StormGlass {
         throw new StormGlassResponseError(
           `Error: ${JSON.stringify(error.data)} Code: ${error.status}`
         );
-
-       
     }
     throw new ClientRequestError(JSON.stringify(err));
   }

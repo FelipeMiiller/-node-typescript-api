@@ -1,5 +1,6 @@
-import StormGlass, { ForecastPoint } from "@src/clients/stormGlass";
-import { InternalError } from "@src/util/errors/internal-errors";
+
+import StormGlass, { ForecastPoint } from "../clients/stormGlass";
+import { InternalError } from ".././util/errors/internal-errors";
 
 
 
@@ -15,7 +16,7 @@ export interface Beach {
     lng: number;
     name: string;
     position: BeachPosition;
-    user: string;
+  
 }
 
 export interface BeachForecast extends Omit<Beach, 'user'>, ForecastPoint { }
@@ -36,7 +37,7 @@ export class ForecastProcessingInternalError extends InternalError {
 
 
 
-export default class Forecast {
+export default class ForecastService {
 
     constructor(protected stormGlass = new StormGlass()) { }
 
