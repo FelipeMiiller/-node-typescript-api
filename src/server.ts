@@ -1,40 +1,36 @@
 import dotenv from 'dotenv';
 import cors from 'cors';
 import express, { Application } from 'express';
-import { routes } from './routes';
-import  * as database from './database';
+import Routes from './routes';
+import * as database from './database';
 
 
 export class SetupServer {
- private  app: Application = express();
+  private app: Application = express();
   constructor(private port = 3333) {
 
   }
 
   public async init(): Promise<void> {
-    console.log('init');
+    console.log('initialize server!!!!');
     this.setupExpress();
     this.setupControllers();
     await this.databaseSetup();
-
-
-    this.getApp().listen(this.port, () => {
-      console.log(`HTTP server on running, port:${this.port}`);
-    });
+    console.log('Server is started!!!!');
   }
 
   private setupExpress(): void {
-    console.log('setupExpress');
+    console.log('init: setup Express');
     dotenv.config();
     this.app.use(cors());
     this.app.use(express.json());
-    console.log('setupExpress');
+    console.log('Terminate: setup Express');
   }
 
   private setupControllers(): void {
-    console.log('setupControllers');
-    this.app.use(routes);
-    console.log('setupControllers');
+   
+    this.app.use(Routes());
+   
   }
 
   public getApp(): Application {
@@ -42,14 +38,20 @@ export class SetupServer {
   }
 
   private async databaseSetup(): Promise<void> {
-    console.log('databaseSetup');
-    await database.connect();
 
+    await database.connect();
   }
 
   public async close(): Promise<void> {
-    console.log('close');
+
     await database.close();
+  }
+
+  public async start(): Promise<void> {
+   await this.init();
+    this.app.listen(this.port, () => {
+      console.log(`HTTP server on running, port:${this.port}`);
+    });
   }
 }
 

@@ -2,7 +2,7 @@
 
 
 import * as HTTPUtil from '@src/util/Request';
-import StormGlass from './stormGlass';
+import StormGlass from '../stormGlass';
 import stormGlassWaterResponseMock from '@test/fixtures/StormGlass_Water_Response_Mock.json';
 import stormGlassWaterNormalizedMock from '@test/fixtures/StormGlass_water_Normalized_Mock.json';
 

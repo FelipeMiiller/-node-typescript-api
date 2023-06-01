@@ -9,7 +9,7 @@
     "start": "ts-node-dev dist/src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "test:functional": "jest --projects ./test  --detectOpenHandles --runInBand",
-    "test:unit": "jest",
+    "test:unit": "jest --detectOpenHandles",
     "lint": "eslint ./src ./test --ext .ts",
     "lint:fix": "eslint ./src ./test --ext .ts --fix",
     "style:check": "prettier --check \"src/**/*.ts\" \"test/**/*.ts\"",

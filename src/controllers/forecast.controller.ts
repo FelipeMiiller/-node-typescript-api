@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 
-import ForecastService from './forescast.service';
+import ForecastService from '../services/forescast.service';
 import { Beach } from '../models/beach';
 
 
@@ -16,7 +16,7 @@ export default class ForecastController {
       const forecasData = await forecast.processForecastForBeaches(beaches);
       response.status(200).send(forecasData);
     } catch (error) {
-      response.status(500).send({ error: 'Something went wrong' });
+      response.status(500).send({ error: 'Internal Server Error' });
 
     }
 

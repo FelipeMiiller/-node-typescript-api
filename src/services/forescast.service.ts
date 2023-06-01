@@ -1,7 +1,7 @@
 
 import StormGlass, { ForecastPoint } from "../clients/stormGlass";
-import { InternalError } from ".././util/errors/internal-errors";
-import { Beach } from "@src/models/beach";
+import { InternalError } from "../util/errors/internal-errors";
+import { Beach } from "../models/beach";
 
 
 
