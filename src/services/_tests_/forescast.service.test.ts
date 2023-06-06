@@ -4,6 +4,7 @@ import stormGlassNormalizedMock from '@test/fixtures/StormGlass_water_Normalized
 import Forecast, { ForecastProcessingInternalError } from '@src/services/forescast.service';
 import { Beach, BeachPosition } from '@src/models/beach';
 jest.mock('@src/clients/stormGlass');
+
 describe('StormGlass client', () => {
 
     const mockedStormGlassService = new StormGlass() as jest.Mocked<StormGlass>;
@@ -20,7 +21,7 @@ describe('StormGlass client', () => {
                 lng: 151.289824,
                 name: 'Manly',
                 position: BeachPosition.E,
-             
+                user: '647f9ae30f3a999b78a1023d',
 
             },
         ];
@@ -123,17 +124,18 @@ describe('StormGlass client', () => {
                 lng: 151.289824,
                 name: 'Manly',
                 position: BeachPosition.E,
-              
+                user: '647f9ae30f3a999b78a1023d',
+
             }
 
         ]
-            
+
         mockedStormGlassService.fetchPoints.mockRejectedValue('Error fetching data');
 
         const forecast = new Forecast(mockedStormGlassService);
         await expect(forecast.processForecastForBeaches(beaches))
-        .rejects
-        .toThrowError(ForecastProcessingInternalError);
+            .rejects
+            .toThrowError(ForecastProcessingInternalError);
 
 
 

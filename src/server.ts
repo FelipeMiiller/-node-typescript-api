@@ -1,4 +1,4 @@
-import dotenv from 'dotenv';
+
 import cors from 'cors';
 import express, { Application } from 'express';
 import Routes from './routes';
@@ -21,7 +21,6 @@ export class SetupServer {
 
   private setupExpress(): void {
     console.log('init: setup Express');
-    dotenv.config();
     this.app.use(cors());
     this.app.use(express.json());
     console.log('Terminate: setup Express');

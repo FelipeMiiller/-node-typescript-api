@@ -1,12 +1,12 @@
 import mongoose from 'mongoose';
-
+import config from 'config'
 
 
 export async function connect(): Promise<void> {
 
     try {
         console.log('init: connect to mongo');
-        await mongoose.connect(process.env.MONGO_URL as string,)
+        await mongoose.connect(config.get('App.database.mongoUrl'));
         console.log('finish: connect to mongo')
 
 

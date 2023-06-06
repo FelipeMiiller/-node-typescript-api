@@ -63,6 +63,9 @@ typings/
 # typescript compiled code
 dist/
 
+
+config/
+
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml

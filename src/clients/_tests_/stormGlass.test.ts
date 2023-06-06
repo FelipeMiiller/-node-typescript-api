@@ -1,10 +1,10 @@
 
 
 
-import * as HTTPUtil from '@src/util/Request';
+import * as HTTPUtil from '../../util/Request';
 import StormGlass from '../stormGlass';
-import stormGlassWaterResponseMock from '@test/fixtures/StormGlass_Water_Response_Mock.json';
-import stormGlassWaterNormalizedMock from '@test/fixtures/StormGlass_water_Normalized_Mock.json';
+import stormGlassWaterResponseMock from '../../../test/fixtures/StormGlass_Water_Response_Mock.json';
+import stormGlassWaterNormalizedMock from '../../../test/fixtures/StormGlass_water_Normalized_Mock.json';
 
 
 

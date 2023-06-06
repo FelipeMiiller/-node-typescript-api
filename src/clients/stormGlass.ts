@@ -1,5 +1,6 @@
 
-import { InternalError } from "../util/errors/internal-errors";
+import config from "config";
+import { InternalError } from "../util/errors/errors";
 import * as HTTPUtil from "../util/Request";
 
 
@@ -39,16 +40,15 @@ export interface ForecastPoint {
 
 export class StormGlassUnexpectedResponseError extends InternalError {
   constructor(message: string) {
-   
+
     super(message);
   }
 }
 
 
 export class ClientRequestError extends InternalError {
-  constructor(message: string) 
-  {
-   
+  constructor(message: string) {
+
     const internalMessage =
       'Unexpected error when trying to communicate to StormGlass';
     super(`${internalMessage}: ${message}`);
@@ -58,7 +58,7 @@ export class ClientRequestError extends InternalError {
 
 export class StormGlassResponseError extends InternalError {
   constructor(message: string) {
- 
+
     const internalMessage =
       'Unexpected error returned by the StormGlass service';
     super(`${internalMessage}: ${message}`);
@@ -77,27 +77,28 @@ export default class StormGlass {
   async fetchPoints(lat: number, lng: number): Promise<ForecastPoint[]> {
 
     try {
+     
       const { data } = await this.request.get<StormGlassForecastResponse>(
-        `${process.env.STORM_GLASS_API_URL}/weather/point?lat=${lat}&lng=${lng}&params=${this.stormGlassAPIParams}&source=${this.stormGlassAPISource}`
-        , {
-        headers: {
-          Authorization: process.env.STORM_GLASS_API_KEY
-        }
-      });
+        `${config.get('App.resources.stormGlass.apiUrl')}/weather/point?lat=${lat}&lng=${lng}&params=${this.stormGlassAPIParams}&source=${this.stormGlassAPISource}`,
+        {
+          headers: {
+            Authorization: config.get('App.resources.stormGlass.apiToken'),
+          }
+        });
       
       return this.normalizeResponse(data)
 
     } catch (err) {
       if (err instanceof Error && HTTPUtil.Request.isRequestError(err)) {
-      
+
         const error = HTTPUtil.Request.extractErrorData(err);
-       
+
         throw new StormGlassResponseError(
           `Error: ${JSON.stringify(error.data)} Code: ${error.status}`
         );
+      }
+      throw new ClientRequestError(JSON.stringify(err));
     }
-    throw new ClientRequestError(JSON.stringify(err));
-  }
   }
 
   private normalizeResponse(points: StormGlassForecastResponse): ForecastPoint[] {
