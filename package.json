@@ -17,7 +17,7 @@
     "style:fix": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\""
   },
  
-  "engines": { "node": "12" },
+
   "keywords": [
     "node",
     "nodejs",
