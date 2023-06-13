@@ -64,7 +64,7 @@ typings/
 dist/
 
 
-config/
+
 
 # Elastic Beanstalk Files
 .elasticbeanstalk/*

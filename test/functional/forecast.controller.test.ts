@@ -11,7 +11,7 @@ describe('Beach forecast functional tests', () => {
     email: 'John@mail.com',
     password: '1234'
   }
- 
+
 
 
   let token: string
@@ -20,7 +20,7 @@ describe('Beach forecast functional tests', () => {
     await Beach.deleteMany({});
     await User.deleteMany({});
     const user = await new User(defaultUser).save();
-    console.log(user?.id)
+   
     const defaultBeach = {
       lat: -33.792726,
       lng: 151.289824,
@@ -57,8 +57,7 @@ describe('Beach forecast functional tests', () => {
       .get('/forecast')
       .set({ 'x-access-token': token });
 
-    console.log(status)
-    console.log(body)
+   
 
     expect(status).toBe(200);
     expect(body).toEqual(api_forecast_response_1_beach);
@@ -86,8 +85,7 @@ describe('Beach forecast functional tests', () => {
       .get('/forecast')
       .set({ 'x-access-token': token });
 
-    console.log(status)
-    console.log(body)
+   
 
     expect(status).toBe(500);
     expect(body).toEqual({

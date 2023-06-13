@@ -19,13 +19,13 @@ export class AuthMethods {
     }
 
    static generateToken(payload: object): string {
-        return jwt.sign(payload, config.get('App.JWT.secret'), {
-            expiresIn: config.get('App.JWT.tokenExpiresIn')
+        return jwt.sign(payload, config.get('App.auth.jwt.secret'), {
+            expiresIn: config.get('App.auth.jwt.tokenExpiresIn')
         })
     }
 
   static  decoderToken(token: string): DecodedUser {
-        return jwt.verify(token, config.get('App.JWT.secret')) as DecodedUser;
+        return jwt.verify(token, config.get('App.auth.jwt.secret')) as DecodedUser;
     }
 }
 

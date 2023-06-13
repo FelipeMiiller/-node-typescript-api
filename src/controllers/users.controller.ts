@@ -33,7 +33,7 @@ export default class UsersController extends BaseController {
 
 
             const user = await User.findOne({ email });
-        
+
             if (!user) {
 
                 res.status(401).send({
@@ -50,7 +50,7 @@ export default class UsersController extends BaseController {
                 });
             } else {
                 const token = AuthMethods.generateToken(user.toJSON());
-                
+
                 res.status(200).send({ ...user.toJSON(), ...{ token } })
             }
 

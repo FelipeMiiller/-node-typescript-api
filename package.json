@@ -1,13 +1,14 @@
 {
-  "name": "node-",
-  "version": "2.0.0",
-  "description": "API em Typescript Express",
+  "name": "typescript-api",
+  "version": "1.0.0",
+  "description": "Complete API built with Node.js and Typescript",
   "main": "index.js",
   "scripts": {
+    "install": "yarn install --immutable --immutable-cache",
     "build": "tsc",
     "dev": "ts-node-dev --inspect --transpile-only --ignore-watch  node_modules src/index.ts",
-    "start": "ts-node-dev dist/src/index.js",
-    "test": "npm run test:unit && npm run test:functional",
+    "start": "yarn build && node dist/src/index.js",
+    "test":  "yarn test:unit && yarn test:functional",
     "test:functional": "jest --projects ./test --runInBand",
     "test:unit": "jest",
     "lint": "eslint ./src ./test --ext .ts",
@@ -15,6 +16,14 @@
     "style:check": "prettier --check \"src/**/*.ts\" \"test/**/*.ts\"",
     "style:fix": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\""
   },
+ 
+  "engines": { "node": "12" },
+  "keywords": [
+    "node",
+    "nodejs",
+    "typescript",
+    "api"
+  ],
   "author": "Felipe Miiller",
   "license": "ISC",
   "devDependencies": {

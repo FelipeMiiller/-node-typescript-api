@@ -9,9 +9,9 @@
         "tokenExpiresIn": "1d"
       },
       "resources": {
-        "StormGlass": {
+        "stormGlass": {
           "apiUrl": "https://api.stormglass.io/v2",
-          "apiToken": "dsad"
+          "apiToken": "do-not-hard-code"
         }
       }
     }

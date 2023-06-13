@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 
-import ForecastService from '../services/forescast.service';
+import ForecastService from '../services/forecast.service';
 import { Beach } from '../models/beach';
 
 
