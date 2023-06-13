@@ -5,6 +5,7 @@ import UsersController from './controllers/users.controller';
 import { authMiddleware } from './middlewares/auth';
 
 
+
 export default function Routes(): express.Router {
     const routes = express.Router()
 
@@ -16,7 +17,10 @@ export default function Routes(): express.Router {
 
 
 
+    routes.get('/', (_req, res) => {
 
+        res.status(200).send("Hello from StormGlass API!");
+    })
 
     // routers for forecast
     routes.use('/forecast', (req, res, next) => authMiddleware(req, res, next))

@@ -4,7 +4,7 @@
   "description": "Complete API built with Node.js and Typescript",
   "main": "index.js",
   "scripts": {
-    "install": "yarn install --immutable --immutable-cache",
+   
     "build": "tsc",
     "dev": "ts-node-dev --inspect --transpile-only --ignore-watch  node_modules src/index.ts",
     "start": "yarn build && node dist/src/index.js",
@@ -17,7 +17,7 @@
     "style:fix": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\""
   },
  
-  "engines": { "node": "14" },
+ 
   "keywords": [
     "node",
     "nodejs",
