@@ -4,11 +4,10 @@
   "description": "Complete API built with Node.js and Typescript",
   "main": "index.js",
   "scripts": {
-   
     "build": "tsc",
     "dev": "ts-node-dev --inspect --transpile-only --ignore-watch  node_modules src/index.ts",
     "start": "yarn build && node dist/src/index.js",
-    "test":  "yarn test:unit && yarn test:functional",
+    "test": "yarn test:unit && yarn test:functional",
     "test:functional": "jest --projects ./test --runInBand",
     "test:unit": "jest",
     "lint": "eslint ./src ./test --ext .ts",
@@ -16,8 +15,9 @@
     "style:check": "prettier --check \"src/**/*.ts\" \"test/**/*.ts\"",
     "style:fix": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\""
   },
- 
- 
+  "engines": {
+    "node": "18.16.0"
+  },
   "keywords": [
     "node",
     "nodejs",
