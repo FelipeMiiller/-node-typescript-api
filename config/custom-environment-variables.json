@@ -13,8 +13,8 @@
     },
     "auth": {
       "jwt": {
-        "secret": "efecefwg32fj0cf983y",
-        "tokenExpiresIn": "1d"
+      "secret": "JWT_SECRET",
+        "tokenExpiresIn": "JWT_EXPIRES_IN"
       }
     }
   }

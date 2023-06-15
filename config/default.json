@@ -4,14 +4,15 @@
       "database": {
         "mongoUrl": "mongodb://localhost:27017/surf-forecast"
       },
-      "JWT": {
-        "secret": "some-key",
-        "tokenExpiresIn": "1d"
-      },
       "resources": {
         "stormGlass": {
           "apiUrl": "https://api.stormglass.io/v2",
           "apiToken": "do-not-hard-code"
+        }
+      },"auth": {
+        "jwt": {
+        "secret": "d32da",
+          "tokenExpiresIn": "1d"
         }
       }
     }
