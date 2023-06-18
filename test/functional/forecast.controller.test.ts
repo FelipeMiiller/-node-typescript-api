@@ -1,9 +1,14 @@
-import { Beach, BeachPosition } from "@src/models/beach";
+
 import nock from 'nock'
-import stormGlassWaterResponseMock from '@test/fixtures/StormGlass_Water_Response_Mock.json'
-import api_forecast_response_1_beach from "@test/fixtures/api_forecast_response_1_beach.json"
-import { User } from "@src/models/user";
-import { AuthMethods } from "@src/util/authMethods";
+
+
+
+import stormGlassWaterResponseMock from '../fixtures/StormGlass_Water_Response_Mock.json'
+import api_forecast_response_1_beach from "../fixtures/api_forecast_response_1_beach.json"
+import { Beach, BeachPosition } from '../../src/models/beach';
+import { User } from '../../src/models/user';
+import { AuthMethods } from '../../src/util/authMethods';
+
 
 describe('Beach forecast functional tests', () => {
   const defaultUser = {
@@ -89,7 +94,9 @@ describe('Beach forecast functional tests', () => {
 
     expect(status).toBe(500);
     expect(body).toEqual({
-      error: 'Internal Server Error'
+      "code": 500,
+      error: 'Internal Server Error',
+      "message": "Something went wrong",
     })
 
   })

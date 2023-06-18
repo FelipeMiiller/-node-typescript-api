@@ -1,8 +1,8 @@
 
-import { User } from '@src/models/user';
 import bcrypt from 'bcryptjs';
 import config from 'config';
 import jwt from 'jsonwebtoken';
+import { User } from '../models/user';
 
 export interface DecodedUser extends Omit<User, '_id'> {
     id: string;

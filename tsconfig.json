@@ -1,11 +1,9 @@
 {
   "compilerOptions": {
-    "target": "es2020",
+    "target": "es2019",
     "moduleResolution": "node",
     "module": "commonjs",
-    "lib": [
-      "es2020"
-    ],
+    "lib": ["es2019"],
     "sourceMap": true,
     "outDir": "dist",
     "strict": true,
@@ -19,19 +17,7 @@
     "noImplicitReturns": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-    "baseUrl": ".",
-    "paths": {
-      "@src/*": [
-        "./src/*"
-      ],
-      "@test/*": [
-        "./test/*"
-      ]
-    },
-    "rootDirs": [
-      "./src",
-      "./test"
-    ],
+
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true
   },

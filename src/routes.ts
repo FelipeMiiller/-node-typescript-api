@@ -1,4 +1,4 @@
-import express, { Application, RouterOptions } from 'express';
+import express from 'express';
 import ForecastController from './controllers/forecast.controller';
 import BeachesController from './controllers/beaches.controller';
 import UsersController from './controllers/users.controller';
@@ -10,7 +10,7 @@ export default function Routes(): express.Router {
     const routes = express.Router()
 
 
-    console.log('init: setupControllers');
+
     const forecastController = new ForecastController();
     const beachesController = new BeachesController();
     const usersController = new UsersController();
@@ -39,6 +39,6 @@ export default function Routes(): express.Router {
 
 
 
-    console.log('Terminate: setupControllers');
+
     return routes;
 }

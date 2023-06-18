@@ -1,5 +1,5 @@
-import { User } from "@src/models/user";
-import { AuthMethods } from "@src/util/authMethods";
+import { User } from "../../src/models/user";
+import { AuthMethods } from "../../src/util/authMethods";
 
 
 
@@ -9,7 +9,6 @@ import { AuthMethods } from "@src/util/authMethods";
 
 
 describe('Users functional tests', () => {
-
 
 
   beforeAll(async () => {
@@ -30,21 +29,17 @@ describe('Users functional tests', () => {
       const { body, status } = await global.testRequest.post('/users').send(newUser)
 
 
-      console.log(body);
-      console.log(status);
-      expect(status).toBe(400
-      );
+      expect(status).toBe(406);
       expect(body).toEqual({
-        code: 400,
+        code: 406,
         description: "Validation failed!",
-        error: [
+        error: "Not Acceptable",
+        message: JSON.stringify([
           {
             king: 'required',
             path: 'name',
             message: 'Path `name` is required.'
-          },
-
-        ]
+          }]),
 
       });
       await User.deleteMany({});
@@ -54,13 +49,10 @@ describe('Users functional tests', () => {
     it('should successfuly create a new user with encrypted password', async () => {
 
       const newUser = { name: 'John Doe', email: 'john@mail.com', password: '1234' };
-      console.log("201 ");
       const { body, status } = await global.testRequest.post('/users').send(newUser)
 
-      console.log(body);
-      console.log(status);
-      expect(status).toBe(201);
 
+      expect(status).toBe(201);
       await expect(AuthMethods.comparePasswords(newUser.password, body.password)).resolves.toBeTruthy();
       expect(body).toEqual(
         expect.objectContaining({
@@ -76,17 +68,16 @@ describe('Users functional tests', () => {
 
       const { body, status } = await global.testRequest.post('/users').send(newUser);
 
-      console.log(body);
-      console.log(status);
-      expect(status).toBe(400);
+      expect(status).toBe(406);
       expect(body).toEqual({
-        code: 400,
+        code: 406,
         description: "Validation failed!",
-        error: [{
+        error: "Not Acceptable",
+        message: JSON.stringify([{
           king: 'DUPLICATED',
           path: 'email',
           message: 'already exists in the database.'
-        }]
+        }])
       });
     })
 
@@ -101,8 +92,7 @@ describe('Users functional tests', () => {
       const newUser = { name: 'John Doe', email: 'john@mail.com', password: '1234' };
       const { body, status } = await global.testRequest.post('/users/authorizate').send(newUser);
 
-      console.log(body);
-      console.log(status);
+
 
       expect(status).toBe(200);
       expect(body).toEqual(
@@ -118,13 +108,10 @@ describe('Users functional tests', () => {
 
       const { body, status } = await global.testRequest.post('/users/authorizate').send(newUser);
 
-      console.log(body);
-      console.log(status);
+
       expect(status).toBe(401);
       expect(body).toEqual({
-        code: 401,
-        description: "Authentication failed!",
-        error: 'User not found'
+        message: 'User not found', code: 401, error: 'Unauthorized', description: 'Authentication failed!'
       });
     })
 
@@ -133,19 +120,14 @@ describe('Users functional tests', () => {
 
       const { body, status } = await global.testRequest.post('/users/authorizate').send(newUser);
 
-      console.log(body);
-      console.log(status);
       expect(status).toBe(401);
       expect(body).toEqual({
+        message: 'Password is incorrect',
         code: 401,
-        description: "Authentication failed!",
-        error: 'Password is incorrect'
+        error: 'Unauthorized',
+        description: 'Authentication failed!'
       });
     })
-
-
-
-
 
   })
 })

@@ -1,16 +1,16 @@
-import { Beach } from "@src/models/beach";
-import { User } from "@src/models/user";
-import { AuthMethods } from "@src/util/authMethods";
+import { Beach } from "../../src/models/beach";
+import { User } from "../../src/models/user";
+import { AuthMethods } from "../../src/util/authMethods";
 
 
 
 
 describe('Beaches functional tests', () => {
-    const defaultUser= {
-    name: 'John Doe',
-    email: 'John@mail.com',
-    password: '1234'
-}
+    const defaultUser = {
+        name: 'John Doe',
+        email: 'John@mail.com',
+        password: '1234'
+    }
     let token: string
     beforeEach(async () => {
         await Beach.deleteMany({});
@@ -31,12 +31,11 @@ describe('Beaches functional tests', () => {
                     position: 'E',
                 };
                 const { body, status } = await global.testRequest
-                .post('/beaches')
-                .set({'x-access-token': token})
-                .send(newBeach);
+                    .post('/beaches')
+                    .set({ 'x-access-token': token })
+                    .send(newBeach);
 
-                console.log(status)
-                console.log(body)
+
                 expect(status).toBe(201);
                 expect(body).toEqual(expect.objectContaining(newBeach));
             });
@@ -53,15 +52,31 @@ describe('Beaches functional tests', () => {
                     position: 'E',
                 };
                 const { body, status } = await global.testRequest
-                .post('/beaches')
-                .set({'x-access-token': token})
-                .send(newBeach);
+                    .post('/beaches')
+                    .set({ 'x-access-token': token })
+                    .send(newBeach);
 
-                console.log(status)
-                console.log(body)
-                expect(status).toBe(422);
 
-                expect(body).toEqual({ error: 'Beach validation failed: lat: Cast to Number failed for value "invalid" (type string) at path "lat"' });
+                expect(status).toBe(406);
+                expect(body).toEqual({
+
+                    message:
+
+                        JSON.stringify([
+                            {
+                                king: 'Number',
+                                path: 'lat',
+                                message: 'Cast to Number failed for value "invalid" (type string) at path "lat"'
+                            }
+                        ]),
+
+                    code: 406,
+
+                    error: 'Not Acceptable',
+
+                    description: 'Validation failed!'
+
+                });
             });
         it.skip('should  return 500 when there is a validation error', async () => {
 
@@ -73,12 +88,11 @@ describe('Beaches functional tests', () => {
                 position: 'E',
             };
             const { body, status } = await global.testRequest
-            .post('/beaches')
-            .set({'x-access-token': token})
-            .send(newBeach);
+                .post('/beaches')
+                .set({ 'x-access-token': token })
+                .send(newBeach);
 
-            console.log(status)
-            console.log(body)
+
             expect(status).toBe(500);
             expect(body).toEqual({ error: 'Internal Server Error' });
         });

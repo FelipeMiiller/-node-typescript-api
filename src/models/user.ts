@@ -1,3 +1,4 @@
+import logger from '../logger';
 import { AuthMethods } from '../util/authMethods';
 import mongoose, { Document, Model, ObjectId, Schema, Types } from 'mongoose';
 
@@ -54,7 +55,7 @@ schema.pre('save', async function (): Promise<void> {
     const hashedPassword = await AuthMethods.hashPassword(this.password);
     this.password = hashedPassword;
   } catch (err) {
-    console.error(`Error hashing the password for the user ${this.name}`, err);
+    logger.error(`Error hashing the password for the user ${this.name}`, err);
   }
 });
 

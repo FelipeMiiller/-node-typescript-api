@@ -1,10 +1,14 @@
 
 import { User } from "../models/user";
 import { Request, Response } from "express";
-import { BaseController } from "./Base";
+
 import { AuthMethods } from "../util/authMethods";
-import mongoose from "mongoose";
-import { HandleErrorsDB } from "../util/errors/handler/dataBase";
+
+import logger from "../logger";
+import { BaseController } from ".";
+import { errorController } from "./error";
+
+
 
 
 
@@ -20,7 +24,8 @@ export default class UsersController extends BaseController {
 
             res.status(201).send(newUser);
         } catch (error) {
-            HandleErrorsDB(res, error);
+
+            errorController.sendCreateUpdateErrorResponse(res, error);
 
         }
     }
@@ -28,41 +33,23 @@ export default class UsersController extends BaseController {
 
 
     async authenticate(req: Request, res: Response): Promise<void> {
-        try {
-            const { email, password } = req.body;
 
+        const { email, password } = req.body;
+        const user = await User.findOne({ email });
 
-            const user = await User.findOne({ email });
+        if (!user) {
+            errorController.sendGenericError(res, { code: 401, description: "Authentication failed!", message: 'User not found' });
 
-            if (!user) {
+        } else if (!(await AuthMethods.comparePasswords(password, user.password))) {
 
-                res.status(401).send({
-                    code: 401,
-                    description: "Authentication failed!",
-                    error: 'User not found'
-                })
-            } else if (!(await AuthMethods.comparePasswords(password, user.password))) {
+            errorController.sendGenericError(res, { code: 401, description: "Authentication failed!", message: 'Password is incorrect' });
 
-                res.status(401).send({
-                    code: 401,
-                    description: "Authentication failed!",
-                    error: 'Password is incorrect'
-                });
-            } else {
-                const token = AuthMethods.generateToken(user.toJSON());
+        } else {
+            const token = AuthMethods.generateToken(user.toJSON());
 
-                res.status(200).send({ ...user.toJSON(), ...{ token } })
-            }
-
-        } catch (error) {
-            console.log(error)
-            res.status(500).send({
-                code: 500,
-
-                description: 'Something went wrong!',
-            });
-
+            res.status(200).send({ ...user.toJSON(), ...{ token } })
         }
+
 
 
 

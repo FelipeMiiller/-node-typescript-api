@@ -1,7 +1,8 @@
 
 import config from "config";
-import { InternalError } from "../util/errors/errors";
 import * as HTTPUtil from "../util/Request";
+import { InternalError } from "../util/errors/internal-errors";
+
 
 
 

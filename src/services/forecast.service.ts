@@ -1,8 +1,7 @@
-
 import StormGlass, { ForecastPoint } from "../clients/stormGlass";
-import { InternalError } from "../util/errors/errors";
+import logger from "../logger";
 import { Beach } from "../models/beach";
-
+import { InternalError } from "../util/errors/internal-errors";
 
 
 
@@ -23,14 +22,13 @@ export class ForecastProcessingInternalError extends InternalError {
 }
 
 
-
 export default class ForecastService {
 
-    constructor(readonly stormGlass = new StormGlass()) { }
+    constructor(private stormGlass = new StormGlass()) { }
 
 
     public async processForecastForBeaches(beaches: Beach[]): Promise<TimeForecast[]> {
-
+        logger.info(`Processing forecast for ${beaches.length} beaches`);
         const pointsWithCorrectSources: BeachForecast[] = [];
 
         try {
@@ -45,7 +43,7 @@ export default class ForecastService {
             }
             return this.mapForecastByTime(pointsWithCorrectSources);
         } catch (error) {
-
+            logger.error(error);
             throw new ForecastProcessingInternalError((error as Error).message);
 
         }

@@ -1,30 +1,42 @@
-import { Request, Response } from 'express';
 
+import { Request, Response } from 'express';
 import ForecastService from '../services/forecast.service';
+import { BaseController } from '.';
+
+import { errorController } from './error';
 import { Beach } from '../models/beach';
+import logger from '../logger';
+
 
 
 
 const forecastService = new ForecastService();
 
+export default class ForecastController extends BaseController {
 
-export default class ForecastController {
+  constructor() {
+    super();
+  }
 
-  constructor() { }
-  async getForecastForgeLoggedUser(req: Request, resp: Response): Promise<void> {
+
+  async getForecastForgeLoggedUser(req: Request, res: Response): Promise<void> {
 
     try {
-      const beaches = await Beach.find({user: req.decoded?.id});
+      const beaches = await Beach.find({ user: req.decoded?.id });
 
       const forecasData = await forecastService.processForecastForBeaches(beaches);
-      resp.status(200).send(forecasData);
+      res.status(200).send(forecasData);
 
     } catch (error) {
-
-      resp.status(500).send({ error: 'Internal Server Error' });
-
+      logger.error(error);
+      errorController.sendGenericError(res, {
+        code: 500,
+        message: 'Something went wrong',
+      });
     }
 
-
   }
+
+
+
 }
