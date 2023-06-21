@@ -8,6 +8,7 @@ export async function connect(): Promise<void> {
     try {
         await mongoose.connect(config.get('App.database.mongoUrl'));
     } catch (err) {
+        
         logger.error(`Error connecting to MongoDB: ${err}`);
     }
 }

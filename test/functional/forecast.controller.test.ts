@@ -5,7 +5,7 @@ import nock from 'nock'
 
 import stormGlassWaterResponseMock from '../fixtures/StormGlass_Water_Response_Mock.json'
 import api_forecast_response_1_beach from "../fixtures/api_forecast_response_1_beach.json"
-import { Beach, BeachPosition } from '../../src/models/beach';
+import { Beach, GeoPosition } from '../../src/models/beach';
 import { User } from '../../src/models/user';
 import { AuthMethods } from '../../src/util/authMethods';
 
@@ -30,7 +30,7 @@ describe('Beach forecast functional tests', () => {
       lat: -33.792726,
       lng: 151.289824,
       name: 'Manly',
-      position: BeachPosition.E,
+      position: GeoPosition.E,
       user: user.id,
     };
     await new Beach(defaultBeach).save();

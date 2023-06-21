@@ -45,8 +45,6 @@ async function bootstrap(): Promise<void> {
     logger.error(`Error starting server: ${error}`);
     process.exit(ExitStatus.Failure);
   }
-
-
 }
 
 bootstrap();

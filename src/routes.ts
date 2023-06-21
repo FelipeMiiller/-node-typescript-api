@@ -33,8 +33,12 @@ export default function Routes(): express.Router {
 
 
     // routers for users
+ 
     routes.post('/users', usersController.create)
     routes.post('/users/authorizate', usersController.authenticate)
+
+    routes.use('/users/me', (req, res, next) => authMiddleware(req, res, next))
+    routes.get('/users/me', usersController.me)
 
 
 
