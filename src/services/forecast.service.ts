@@ -12,9 +12,9 @@ export interface TimeForecast {
     time: string;
     forecast: BeachForecast[];
 }
-export interface IOrderBy{
+export interface IOrderBy {
     order: 'asc' | 'desc';
-    iteraty: 'rating' | 'name'| 'position'
+    iteraty: 'rating' | 'name' | 'position'
 
 }
 
@@ -35,18 +35,17 @@ export default class ForecastService {
         private readonly ratingService: typeof RatingService = RatingService) { }
 
 
-    public async processForecastForBeaches(beaches: Beach[],orderBy?:IOrderBy ): Promise<TimeForecast[]> {
+    public async processForecastForBeaches(beaches: Beach[], orderOptions:IOrderBy = { order: 'desc', iteraty: 'rating' }): Promise<TimeForecast[]> {
         logger.info(`Processing forecast for ${beaches.length} beaches`);
-        const pointsWithCorrectSources: BeachForecast[] = [];
-        const order:IOrderBy = orderBy ? orderBy :{order: 'desc', iteraty: 'rating'}; 
-        try {
 
+
+        try {
             const beachForecasts: BeachForecast[] = await this.handlerBeaches(beaches);
             const timeForecast = this.mapForecastByTime(beachForecasts);
             return timeForecast.map((t) => ({
-            time: t.time,
-            forecast: _.orderBy(t.forecast,[order.iteraty], [order.order]),
-           }))
+                time: t.time,
+                forecast: _.orderBy(t.forecast, [orderOptions.iteraty], [orderOptions.order]),
+            }))
 
         } catch (error) {
             logger.error(error);
@@ -58,7 +57,6 @@ export default class ForecastService {
 
     private async handlerBeaches(beaches: Beach[]): Promise<BeachForecast[]> {
         const pointsWithCorrectSources: BeachForecast[] = [];
-
 
         for (const beach of beaches) {
             const rating = new this.ratingService(beach);

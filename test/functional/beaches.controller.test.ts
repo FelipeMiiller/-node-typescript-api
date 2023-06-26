@@ -56,7 +56,8 @@ describe('Beaches functional tests', () => {
                     .set({ 'x-access-token': token })
                     .send(newBeach);
 
-
+console.log(body);
+console.log(status);
                 expect(status).toBe(406);
                 expect(body).toEqual({
 

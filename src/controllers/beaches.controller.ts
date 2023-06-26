@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { BaseController } from ".";
+
 import { errorController } from "./error";
 import { Beach } from "../models/beach";
 
@@ -8,7 +8,7 @@ import { Beach } from "../models/beach";
 
 
 
-export default class BeachesController extends BaseController {
+export default class BeachesController  {
 
 
   public async create(req: Request, res: Response): Promise<void> {

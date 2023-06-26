@@ -1,6 +1,6 @@
 import logger from '../logger';
 import { AuthMethods } from '../util/authMethods';
-import mongoose, { Document, Model, ObjectId, Schema, Types } from 'mongoose';
+import mongoose, { Model, Schema} from 'mongoose';
 
 
 export interface User {
@@ -30,9 +30,7 @@ const schema = new Schema<User>(
   }
 );
 
-/**
- * Validates the email and throws a validation error, otherwise it will throw a 500
- */
+
 
 
 export enum CUSTOM_VALIDATION {

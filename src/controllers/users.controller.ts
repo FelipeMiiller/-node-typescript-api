@@ -4,15 +4,14 @@ import { Request, Response } from "express";
 
 import { AuthMethods } from "../util/authMethods";
 
-import logger from "../logger";
-import { BaseController } from ".";
+
 import { errorController } from "./error";
 
 
 
 
 
-export default class UsersController extends BaseController {
+export default class UsersController {
 
 
     public async create(req: Request, res: Response): Promise<void> {

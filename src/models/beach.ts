@@ -1,4 +1,4 @@
-import mongoose, { Document, Model, Schema, Types, model } from 'mongoose';
+import { Model, Schema, Types, model } from 'mongoose';
 
 export enum GeoPosition {
   S = 'S',

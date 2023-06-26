@@ -1,4 +1,4 @@
-import { Response, response } from "express";
+import { Response } from "express";
 import mongoose from "mongoose";
 
 

@@ -1,7 +1,7 @@
 
 import { Request, Response } from 'express';
 import ForecastService from '../services/forecast.service';
-import { BaseController } from '.';
+
 
 import { errorController } from './error';
 import { Beach } from '../models/beach';
@@ -11,12 +11,9 @@ import logger from '../logger';
 
 const forecastService = new ForecastService();
 
-export default class ForecastController extends BaseController {
+export default class ForecastController {
 
-  constructor() {
-    super();
-  }
-
+ 
 
   async getForecastForgeLoggedUser(req: Request, res: Response): Promise<void> {
 
