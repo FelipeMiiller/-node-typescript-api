@@ -3,6 +3,7 @@ import ForecastController from './controllers/forecast.controller';
 import BeachesController from './controllers/beaches.controller';
 import UsersController from './controllers/users.controller';
 import { authMiddleware } from './middlewares/auth';
+import { rateLimiterForescast } from './middlewares/rate-limite';
 
 
 
@@ -23,6 +24,7 @@ export default function Routes(): express.Router {
     })
 
     // routers for forecast
+    routes.use('/forecast', (req, res, next) => rateLimiterForescast(req, res, next))
     routes.use('/forecast', (req, res, next) => authMiddleware(req, res, next))
     routes.get('/forecast', forecastController.getForecastForgeLoggedUser);
 
@@ -33,7 +35,6 @@ export default function Routes(): express.Router {
 
 
     // routers for users
- 
     routes.post('/users', usersController.create)
     routes.post('/users/authorizate', usersController.authenticate)
 

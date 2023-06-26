@@ -9,7 +9,6 @@ import logger from '../logger';
 
 
 
-
 const forecastService = new ForecastService();
 
 export default class ForecastController extends BaseController {

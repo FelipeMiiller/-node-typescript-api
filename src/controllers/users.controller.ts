@@ -12,8 +12,6 @@ import { errorController } from "./error";
 
 
 
-
-
 export default class UsersController extends BaseController {
 
 

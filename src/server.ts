@@ -4,12 +4,17 @@ import express, { Application } from 'express';
 import Routes from './routes';
 import * as database from './database';
 import logger from './logger';
+
+import apiSchema from './api-schema.json';
+import swaggerUi from 'swagger-ui-express'
 import * as http from 'http';
 import expressPino from "express-pino-logger";
-
+import * as OpenApiValidator from 'express-openapi-validator';
+import { apiErrorValidator } from './middlewares/api-error-validator';
+import { OpenAPIV3 } from 'express-openapi-validator/dist/framework/types';
 export class SetupServer {
   private server?: http.Server;
-  private app: Application  = express();
+  private app: Application = express();
   constructor(private port = 3333) {
 
   }
@@ -17,6 +22,7 @@ export class SetupServer {
   public async init(): Promise<void> {
 
     this.setupExpress();
+   await this.docsSetup();
     this.setupControllers();
     await this.databaseSetup();
 
@@ -25,14 +31,27 @@ export class SetupServer {
   private setupExpress(): void {
     this.app.use(express.json());
     this.app.use(expressPino({ logger }));
-    this.app.use(cors({origin: '*'}));
-  
+    this.app.use(cors({ origin: '*' }));
+    //this.app.use(apiErrorValidator)
+
   }
+
+
 
   private setupControllers(): void {
 
     this.app.use(Routes());
 
+  }
+
+
+  private async docsSetup(): Promise<void> {
+    this.app.use('/docs', swaggerUi.serve, swaggerUi.setup(apiSchema));
+    this.app.use(OpenApiValidator.middleware({
+      apiSpec: apiSchema as OpenAPIV3.Document,
+      validateRequests: true, //will be implemented in step2
+      validateResponses: true, //will be implemented in step2
+    }));
   }
 
   public getApp(): Application {

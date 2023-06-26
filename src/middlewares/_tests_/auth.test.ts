@@ -18,7 +18,7 @@ describe("Auth Middleware", () => {
         const nextFake = jest.fn();
 
         authMiddleware(reqFake, resFake, nextFake)
-        console.log(resFake)
+        
         expect(nextFake).toHaveBeenCalled()
     })
 

@@ -61,21 +61,6 @@ describe('StormGlass client', () => {
             forecast: [
               {
                 lat: -33.792726,
-                lng: 151.289824,
-                name: 'Manly',
-                position: 'E',
-                rating: 2,
-                swellDirection: 123.41,
-                swellHeight: 0.21,
-                swellPeriod: 3.67,
-                time: '2020-04-26T00:00:00+00:00',
-                waveDirection: 232.12,
-                waveHeight: 0.46,
-                windDirection: 310.48,
-                windSpeed: 100,
-              },
-              {
-                lat: -33.792726,
                 lng: 141.289824,
                 name: 'Dee Why',
                 position: 'S',
@@ -89,11 +74,30 @@ describe('StormGlass client', () => {
                 windDirection: 299.45,
                 windSpeed: 100,
               },
+              {
+                lat: -33.792726,
+                lng: 151.289824,
+                name: 'Manly',
+                position: 'E',
+                rating: 2,
+                swellDirection: 123.41,
+                swellHeight: 0.21,
+                swellPeriod: 3.67,
+                time: '2020-04-26T00:00:00+00:00',
+                waveDirection: 232.12,
+                waveHeight: 0.46,
+                windDirection: 310.48,
+                windSpeed: 100,
+              },
+              
             ],
           },
         ];
         const forecast = new ForecastService(mockedStormGlassService);
         const beachesWithRating = await forecast.processForecastForBeaches(beaches);
+
+
+      
         expect(beachesWithRating).toEqual(expectedResponse);
       });
 
